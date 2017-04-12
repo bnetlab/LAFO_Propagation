@@ -3,17 +3,18 @@ function value_LFAO
 
 n=17;
 
-x=63e-3;
-x1 =4e-3;
-y=10000e-1;
-y1=1e-6; 
-z=1e6;
-z1=5e-1;
-p=1e3;
-p1=5e-3;
+x=67e-3;
+% x=70e-3;  %10um
+x1 =10e-3;
+y=5e3;
+y1=0.5e-1; 
+z=1e5;
+z1=5e-3;
+p=5e3;
+p1=1e-3;
 
 A_1=0.5;
-A_12=0.1;
+A_12=0.01;
 
 theta=[x,x1,y,y1,z,z1,p,p1]; 
 Y0=zeros(1,n); 
@@ -30,7 +31,7 @@ for i=2:12
 signalON=signalON + Y_val(:,i)*i;
 end
 
-signalON=signalON + Y_val(:,13)*24+Y_val(:,14)*36+Y_val(:,15)*48+Y_val(:,16)*14000;
+signalON=signalON + Y_val(:,13)*24+Y_val(:,14)*36+Y_val(:,15)*48+Y_val(:,16)*65000;
 
 signalON(end)
  
@@ -38,8 +39,8 @@ signalON = (signalON - min(signalON))/(max(signalON) - min(signalON));
 
 plot(t_range, signalON)
 hold on;
-load 'LFAO_DATA.txt';
-Data=LFAO_DATA;
+load 'LFAO_DATA_01.txt';
+Data=LFAO_DATA_01;
 plot(Data(:,1),Data(:,2),'-*')
 
 end

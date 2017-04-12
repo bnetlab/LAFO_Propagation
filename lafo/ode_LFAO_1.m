@@ -19,7 +19,7 @@ kfb2_=theta(8);
 
 
 % Definitions of reaction fluxes Jfb
-for i=1:n-1
+for i=1:11
  Jnu(i)=knu*A(n)*A(i)-knu_*A(i+1); % The flux of i-mer nucleation rxn
 end
 for i=12:14
