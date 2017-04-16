@@ -2,9 +2,9 @@
 % Added Fragmentation
 function value_LFAO
 
-n=17;
+n=16;
 
-x=67e-3;
+x=64e-3;
 % x=70e-3;  %10um
 x1 =15e-3;
 y=15e3;
@@ -15,8 +15,8 @@ p=5e3;
 p1=1e-3;
 q=100e-3;
 q1=0;
-s=5e0;
-s1=1e-3;
+s=0;
+s1=0;
 
 A_1=0.5;
 A_12=0.1;
@@ -29,8 +29,8 @@ Y0=zeros(1,n);
 Y0(n)=A_1;
 Y0(1)=A_12;
 t_range=linspace(0,337,337); 
-[t_val,Y_val]=ode23s(@ode_LFAO_1,t_range,Y0,[],n,theta);
-Y_val([1:20:300 ],[1 4  12 13 15 16 17])
+[t_val,Y_val]=ode23s(@ode_LFAO_2,t_range,Y0,[],n,theta);
+Y_val([1:20:300 ],[1 4  12 13 15 16])
 
 signalON=Y_val(:,n)*0;
 
@@ -39,7 +39,7 @@ for i=2:12
 signalON=signalON + Y_val(:,i)*i;
 end
 
-signalON=signalON + Y_val(:,13)*24+Y_val(:,14)*36+Y_val(:,15)*48+Y_val(:,16)*100000;
+signalON=signalON + Y_val(:,13)*24+Y_val(:,14)*36+Y_val(:,15)*130000;
 
 signalON(end)
  
