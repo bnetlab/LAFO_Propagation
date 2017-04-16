@@ -18,15 +18,15 @@ A24 --> 2* A12
 Lateral association stage:
 From now we will call A24 as L1
 
-L1 + L1 -> L2
+L1 + L1 <-> L2
 
-L2 + L1 -> L3
+L2 + L1 <-> L3
 
-L3 + L1 -> L4
+L3 + L1 <-> L4
 
 Elongation stage:
 
-L4 + M -> F
+L4 + M <-> F
 
-F + M -> F
+F + M <-> F
 
