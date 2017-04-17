@@ -1,6 +1,6 @@
 function dA_dt=ode_LFAO_1(t,A ,n,theta)
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-%Gateway 3
+%Gateway 6
 
 % Added Fragmentation
 % Defines the set of ODEs to be solved to simulate insulin fibrillation %
@@ -29,15 +29,15 @@ kfb3_=theta(12);
 for i=1:11
  Jnu(i)=knu*A(n)*A(i)-knu_*A(i+1); % The flux of i-mer nucleation rxn
 end
-for i=12:15
+for i=12:16 %
  Jla(i)=kla*A(12)*A(i)-kla_*A(i+1); % The flux of i-mer nucleation rxn
 end
 
 Jfag=kfag * A(12) - kfag_ * A(1).^2;
-Jfb1=kfb1 * A(16)*A(n)- kfb1_ * A(17);
-Jfb2= kfb2 *A(17) *A(n)-kfb2_ * A(17);
+Jfb1=kfb1 * A(17)*A(n)- kfb1_ * A(18); %
+Jfb2= kfb2 *A(18) *A(n)-kfb2_ * A(18); %
 
-Jfb3=kfb3 * A(16)*A(12)- kfb3_ * A(17);
+Jfb3=kfb3 * A(17)*A(12)- kfb3_ * A(18); %
 
 
 % There are n equations representing the conc. change of n species
@@ -46,10 +46,10 @@ dA_dt(1)=-Jnu(1)+2 * Jfag; % Derivative of monomer conc.
 for i=2:11 % from dimer to (n-1)-mer
  dA_dt(i)=-Jnu(i)+Jnu(i-1); % Derivatives of oligomer concentrations
 end
-dA_dt(12)=Jnu(11)-sum(Jla(12:15))-Jla(12)-Jfag-Jfb3;
-for i=13:15 % from dimer to (n-1)-mer
+dA_dt(12)=Jnu(11)-sum(Jla(12:16))-Jla(12)-Jfag-Jfb3; %
+for i=13:16 % from dimer to (n-1)-mer %
  dA_dt(i)=-Jla(i)+Jla(i-1); % Derivatives of oligomer concentrations
 end
-dA_dt(16)= Jla(13)-Jfb1;
-dA_dt(17)=Jfb1+Jfb3;
+dA_dt(17)= Jla(16)-Jfb1; %
+dA_dt(18)=Jfb1+Jfb3; %
 dA_dt(n)=-sum(Jnu)-Jfb1-Jfb2;
