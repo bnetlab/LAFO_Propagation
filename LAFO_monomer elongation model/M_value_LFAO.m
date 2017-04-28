@@ -4,7 +4,7 @@ function M_value_LFAO
 
 n=87; %gateway 10
 
-x=35e-3;
+x=30e-3;
 x1 =10e-3;
 y=5e2;
 y1=5e-3; 
@@ -13,7 +13,7 @@ z1=5e-3;
 
 
 A_1=0.5;
-A_12=0.01;
+A_12=0.1;
 
 theta=[x,x1,y,y1,z,z1]; 
 Y0=zeros(1,n); 
@@ -31,7 +31,7 @@ for i=2:85
 signalON=signalON + Y_val(:,i)*(i-1);
 end
 
-signalON=signalON + Y_val(:,n-1)*1000000;
+signalON=signalON + Y_val(:,n-1)*2500000;
 
 signalON(end)
  
@@ -39,8 +39,8 @@ signalON = (signalON - min(signalON))/(max(signalON) - min(signalON));
 
 plot(t_range, signalON)
 hold on;
-load 'LFAO_DATA_01.txt';
-Data=LFAO_DATA_01;
+load 'LFAO_DATA.txt';
+Data=LFAO_DATA;
 plot(Data(:,1),Data(:,2),'-*')
 
 X=Data(:,2);

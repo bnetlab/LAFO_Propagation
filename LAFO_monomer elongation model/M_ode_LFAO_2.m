@@ -28,7 +28,7 @@ for i=13:n-3 %
 end
 
 Jfb1=kfb1 * A(n-2)*A(n)- kfb1_ * A(n-1); 
-Jfb2=kfb1 * A(n-1)*A(n)- kfb1_ * A(n-1);
+Jfb2=kfb1 * A(n-1)*A(n).^0.4- kfb1_ * A(n-1);
 
 % There are n equations representing the conc. change of n species
 
