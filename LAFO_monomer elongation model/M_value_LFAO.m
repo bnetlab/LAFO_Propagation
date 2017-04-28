@@ -1,45 +1,37 @@
 %looping for 3D plot
-% Added Fragmentation
-function value_LFAO
+% New model with monomer elogation for pLAFO formation.
+function M_value_LFAO
 
-n=18; %gateway 10
+n=87; %gateway 10
 
-x=84e-3;
-% x=70e-3;  %10um
-x1 =30e-3;
-y=20e3;
-y1=5e-2; 
-z=5e3;
+x=35e-3;
+x1 =10e-3;
+y=5e2;
+y1=5e-3; 
+z=1e5;
 z1=5e-3;
-p=5e3;
-p1=10e-3; 
-q=0e-3;
-q1=0;
-s=0;
-s1=0;
+
 
 A_1=0.5;
-A_12=0.10;
+A_12=0.01;
 
-theta=[x,x1,y,y1,z,z1,p,p1,q,q1,s,s1]; 
+theta=[x,x1,y,y1,z,z1]; 
 Y0=zeros(1,n); 
-% for i=1:6
-%     Y0(i)=A_12/6;
-% end
+
 Y0(n)=A_1;
 Y0(1)=A_12;
 t_range=linspace(0,337,337); 
-[t_val,Y_val]=ode23s(@ode_LFAO_2,t_range,Y0,[],n,theta);
-Y_val([1:20:300 ],[1 4  13 n-1 n ])
+[t_val,Y_val]=ode23s(@M_ode_LFAO_2,t_range,Y0,[],n,theta);
+Y_val([1:20:300 ],[1 4  13 85 n-1 n ])
 
 signalON=Y_val(:,n)*0;
 
 
-for i=2:13
-signalON=signalON + Y_val(:,i)*i;
+for i=2:85
+signalON=signalON + Y_val(:,i)*(i-1);
 end
 
-signalON=signalON + Y_val(:,14)*24+ + Y_val(:,15)*36 + Y_val(:,16)*48+Y_val(:,n-1)*100000;
+signalON=signalON + Y_val(:,n-1)*1000000;
 
 signalON(end)
  
@@ -47,15 +39,15 @@ signalON = (signalON - min(signalON))/(max(signalON) - min(signalON));
 
 plot(t_range, signalON)
 hold on;
-load 'LFAO_DATA.txt';
-Data=LFAO_DATA;
+load 'LFAO_DATA_01.txt';
+Data=LFAO_DATA_01;
 plot(Data(:,1),Data(:,2),'-*')
 
 X=Data(:,2);
 Y=signalON(Data(:,1)+1);
 mdl = fitlm(Y,X)
 
-signalON (325)/signalON (225)
+signalON (175)/signalON (125)
 % ratio50=sum(Y_val(50,1:13))./Y_val(50,17)
 % 
 % ratio100=sum(Y_val(100,1:13))./Y_val(100,17)
