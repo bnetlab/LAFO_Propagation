@@ -34,7 +34,7 @@ end
 
 Jfag=kfag * A(13) - kfag_ * A(1).^2;
 Jfb1=kfb1 * A(n-2)*A(n)- kfb1_ * A(n-1); %
-Jfb2= kfb2 *A(n-1) *A(n)-kfb2_ * A(n-1); %
+Jfb2= kfb2 *A(n-1) *A(n).^0.4-kfb2_ * A(n-1); %
 
 Jfb3=kfb3 * A(n-2)*A(12)- kfb3_ * A(n-1); %
 

@@ -2,18 +2,18 @@
 % Added Fragmentation
 function value_LFAO
 
-n=24; %gateway 10
+n=18; %gateway 10
 
-x=137e-3;
+x=76e-3;
 % x=70e-3;  %10um
-x1 =30e-3;
+x1 =10e-3;
 y=20e3;
 y1=5e-2; 
 z=5e3;
 z1=5e-3;
 p=5e3;
 p1=10e-3; 
-q=1e-3;
+q=100e-3;
 q1=0;
 s=0;
 s1=0;
@@ -36,10 +36,10 @@ signalON=Y_val(:,n)*0;
 
 
 for i=2:13
-signalON=signalON + Y_val(:,i)*i;
+signalON=signalON + Y_val(:,i)*(i-1);
 end
 
-signalON=signalON + Y_val(:,14)*24+ + Y_val(:,15)*36 + Y_val(:,16)*48+ Y_val(:,17)*60 + Y_val(:,18)*72+ Y_val(:,19)*84 + Y_val(:,20)*96 + Y_val(:,21)*108 + Y_val(:,22)*120 +Y_val(:,n-1)*80000;
+signalON=signalON + Y_val(:,14)*24+ + Y_val(:,15)*36 + Y_val(:,16)*48+Y_val(:,n-1)*200000;
 
 signalON(end)
  
@@ -55,7 +55,7 @@ X=Data(:,2);
 Y=signalON(Data(:,1)+1);
 mdl = fitlm(Y,X)
 
-signalON (325)/signalON (225)
+signalON (175)/signalON (125)
 % ratio50=sum(Y_val(50,1:13))./Y_val(50,17)
 % 
 % ratio100=sum(Y_val(100,1:13))./Y_val(100,17)
