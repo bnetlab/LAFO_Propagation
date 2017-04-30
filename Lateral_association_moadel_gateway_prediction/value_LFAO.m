@@ -4,15 +4,15 @@ function value_LFAO
 
 n=18; %gateway 10
 
-x=76e-3;
+x=80e-3;
 % x=70e-3;  %10um
-x1 =10e-3;
-y=20e3;
+x1 =15e-3;
+y=15e3;
 y1=5e-2; 
 z=5e3;
 z1=5e-3;
 p=5e3;
-p1=10e-3; 
+p1=5e-3; 
 q=100e-3;
 q1=0;
 s=0;
@@ -39,7 +39,7 @@ for i=2:13
 signalON=signalON + Y_val(:,i)*(i-1);
 end
 
-signalON=signalON + Y_val(:,14)*24+ + Y_val(:,15)*36 + Y_val(:,16)*48+Y_val(:,n-1)*200000;
+signalON=signalON + Y_val(:,14)*24+ + Y_val(:,15)*36 + Y_val(:,16)*48+Y_val(:,n-1)*190000;
 
 signalON(end)
  
@@ -48,10 +48,10 @@ signalON = (signalON - min(signalON))/(max(signalON) - min(signalON));
 plot(t_range, signalON)
 hold on;
 load 'LFAO_DATA.txt';
-Data=LFAO_DATA
+Data=LFAO_DATA;
 plot(Data(:,1),Data(:,2),'-*')
 
-X=Data(:,2)
+X=Data(:,2);
 Y=signalON(Data(:,1)+1);
 mdl = fitlm(Y,X)
 
