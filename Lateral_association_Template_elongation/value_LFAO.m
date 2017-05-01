@@ -4,14 +4,14 @@ function value_LFAO
 
 n=42; %gateway 8
 
-x=100e-3; %nu
+x=130e-3; %nu
 % x=70e-3;  %10um
 x1 =15e-3;
 y=2e3; %ilafo
 y1=5e-2; 
-z=5e3; %plafo
+z=5e4; %plafo
 z1=5e-3;
-p=5e3; %fib
+p=3e2; %fib
 p1=5e-3; 
 q=5e2; % fag
 q1=0;
@@ -44,7 +44,7 @@ signalON=signalON + 12*(i-12);
 end
 
 for i=17:41
-signalON=signalON +Y_val(:,i)*900;
+signalON=signalON +Y_val(:,i)*1800;
 end
 
 
