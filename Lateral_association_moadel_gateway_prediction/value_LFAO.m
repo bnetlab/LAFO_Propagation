@@ -2,9 +2,9 @@
 % Added Fragmentation
 function value_LFAO
 
-n=17; %gateway 3
+n=20; %gateway 6
 
-x=72e-3;
+x=94e-3;
 % x=70e-3;  %10um
 x1 =15e-3;
 y=15e3;
@@ -43,7 +43,7 @@ for i=14:n-2
 signalON=signalON + 12*(i-12);
 end
 
-signalON=signalON +Y_val(:,n-1)*200000;
+signalON=signalON +Y_val(:,n-1)*170000;
 
 signalON(end)
  
@@ -62,6 +62,8 @@ mdl = fitlm(Y,X)
 X1=X(5:7);
 Y1=signalON(Data(5:7,1)+1);
 md2 = fitlm(Y1,X1)
+
+signalON (192)/signalON (144)
 
 signalON (300)/signalON (225)
 
