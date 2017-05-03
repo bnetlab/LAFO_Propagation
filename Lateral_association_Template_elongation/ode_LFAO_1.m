@@ -23,7 +23,6 @@ kfag=theta(9);
 kfag_=theta(10);
 
 
-
 % Definitions of reaction fluxes Jfb
 for i=1:12
  Jnu(i)=knu*A(n)*A(i)-knu_*A(i+1); % The flux of i-mer nucleation rxn
@@ -35,11 +34,11 @@ end
 Jfb1=kfb1 * A(16)*A(16)- kfb1_ * A(17); %
 Jfb2= kfb1 *A(16) *A(17)-kfb1_ * A(17); %
 
-for i=17:28
+for i=17:n-2
  Jfb3(i)=kfb3*A(i)*A(n)-kfb3_*A(i+1); % The flux of i-mer nucleation rxn
 end
 
-Jfb4=kfag*A(29);
+Jfb4=kfag*A(n-1);
 
 % There are n equations representing the conc. change of n species
 
@@ -54,9 +53,9 @@ end
 dA_dt(16)= Jla(15)-2*Jfb1-Jfb2;
 dA_dt(17)=Jfb1-Jfb3(17)+Jfb4;
 
-for i=18:28% from dimer to (n-1)-mer
+for i=18:n-2% from dimer to (n-1)-mer
  dA_dt(i)=-Jfb3(i)+Jfb3(i-1); % Derivatives of oligomer concentrations
 end
-dA_dt(29)=Jfb3(28)-Jfb4;
+dA_dt(n-1)=Jfb3(n-2)-Jfb4;
 dA_dt(n)=-sum(Jnu)-sum(Jfb3);
 end

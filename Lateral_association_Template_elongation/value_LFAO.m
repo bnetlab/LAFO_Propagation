@@ -2,9 +2,9 @@
 % Added Fragmentation
 function value_LFAO
 
-n=30; %gateway 8
+n=42; %24 mer frag
 
-x=46e-3; %nu
+x=48e-3; %nu
 x1 =10e-3;
 y=5e6; %ilafo
 y1=5e-2; 
@@ -16,7 +16,10 @@ q=5e3; % fag
 q1=0;
 
 A_1=0.5;
-A_12=0.01;
+B_12=[0.1 0.01];
+
+for j=1:2
+    A_12=B_12(j);
 
 theta=[x,x1,y,y1,z,z1,p,p1,q,q1]; 
 Y0=zeros(1,n); 
@@ -39,7 +42,7 @@ signalON=signalON + 12*(i-12);
 end
 
 for i=17:29
-signalON=signalON +Y_val(:,i)*1700000;
+signalON=signalON +Y_val(:,i)*3800000;
 end
 
 
@@ -49,30 +52,22 @@ signalON = (signalON - min(signalON))/(max(signalON) - min(signalON));
 
 plot(t_range, signalON)
 hold on;
-load 'LFAO_DATA_01.txt';
-Data=LFAO_DATA_01;
-plot(Data(:,1),Data(:,2),'-*')
+if (j==1)
+    load 'LFAO_DATA.txt';
+    Data=LFAO_DATA;
+    plot(Data(:,1),Data(:,2),'-*')
+ else
+   load 'LFAO_DATA_01.txt';
+   Data=LFAO_DATA_01;
+    plot(Data(:,1),Data(:,2),'-*')
+end
+X=Data(:,2);
+Y=signalON(Data(:,1)+1);
+mdl = fitlm(Y,X)
+signalON (192)/signalON (144)
+signalON (300)/signalON (225)
+end
 
-% X=Data(:,2);
-% Y=signalON(Data(:,1)+1);
-% mdl = fitlm(Y,X)
-
-% X1=X(5:7);
-% Y1=signalON(Data(5:7,1)+1);
-% md2 = fitlm(Y1,X1)
-% 
-% signalON (192)/signalON (144)
-% 
-% signalON (300)/signalON (225)
-
-% ratio50=sum(Y_val(50,1:13))./Y_val(50,17)
-% 
-% ratio100=sum(Y_val(100,1:13))./Y_val(100,17)
-% 
-% ratio200=sum(Y_val(200,1:13))./Y_val(200,17)
-% 
-% ratio300=sum(Y_val(300,1:13))./Y_val(300,17)
-% 
 % B= [t_range',signalON];
 % fileID = fopen('LAFO_001_Simulated.txt','w');
 % fprintf(fileID,'%6.2f %12.8f\n',B');
