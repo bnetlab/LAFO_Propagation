@@ -2,35 +2,30 @@
 % Added Fragmentation
 function value_LFAO
 
-n=42; %gateway 8
+n=30; %gateway 8
 
-x=130e-3; %nu
-% x=70e-3;  %10um
-x1 =15e-3;
-y=2e3; %ilafo
+x=46e-3; %nu
+x1 =10e-3;
+y=5e6; %ilafo
 y1=5e-2; 
-z=5e4; %plafo
+z=5e5; %plafo
 z1=5e-3;
-p=3e2; %fib
+p=5e5; %fib
 p1=5e-3; 
-q=5e2; % fag
+q=5e3; % fag
 q1=0;
 
-
-
 A_1=0.5;
-A_12=0.1;
+A_12=0.01;
 
 theta=[x,x1,y,y1,z,z1,p,p1,q,q1]; 
 Y0=zeros(1,n); 
-% for i=1:6
-%     Y0(i)=A_12/6;
-% end
+
 Y0(n)=A_1;
 Y0(1)=A_12;
 t_range=linspace(0,337,337); 
 [t_val,Y_val]=ode23s(@ode_LFAO_1,t_range,Y0,[],n,theta);
-Y_val([1:20:300 ],[1 13 16 17 25 41 42 ])
+Y_val([1:20:300 ],[1 13 16 17  n-1 n])
 
 signalON=Y_val(:,n)*0;
 
@@ -43,8 +38,8 @@ for i=14:16
 signalON=signalON + 12*(i-12);
 end
 
-for i=17:41
-signalON=signalON +Y_val(:,i)*1800;
+for i=17:29
+signalON=signalON +Y_val(:,i)*1700000;
 end
 
 
@@ -54,13 +49,13 @@ signalON = (signalON - min(signalON))/(max(signalON) - min(signalON));
 
 plot(t_range, signalON)
 hold on;
-load 'LFAO_DATA.txt';
-Data=LFAO_DATA;
+load 'LFAO_DATA_01.txt';
+Data=LFAO_DATA_01;
 plot(Data(:,1),Data(:,2),'-*')
 
-X=Data(:,2);
-Y=signalON(Data(:,1)+1);
-mdl = fitlm(Y,X)
+% X=Data(:,2);
+% Y=signalON(Data(:,1)+1);
+% mdl = fitlm(Y,X)
 
 % X1=X(5:7);
 % Y1=signalON(Data(5:7,1)+1);

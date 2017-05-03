@@ -35,28 +35,28 @@ end
 Jfb1=kfb1 * A(16)*A(16)- kfb1_ * A(17); %
 Jfb2= kfb1 *A(16) *A(17)-kfb1_ * A(17); %
 
-for i=17:40
+for i=17:28
  Jfb3(i)=kfb3*A(i)*A(n)-kfb3_*A(i+1); % The flux of i-mer nucleation rxn
 end
 
-Jfb4=kfag*A(41);
+Jfb4=kfag*A(29);
 
 % There are n equations representing the conc. change of n species
 
-dA_dt(1)=-Jnu(1); % Derivative of monomer conc.
+dA_dt(1)=-Jnu(1)+Jfb4; % Derivative of monomer conc.
 for i=2:12 % from dimer to (n-1)-mer
  dA_dt(i)=-Jnu(i)+Jnu(i-1); % Derivatives of oligomer concentrations
 end
-dA_dt(13)=Jnu(12)-sum(Jla)-Jla(13)+Jfb4; %
+dA_dt(13)=Jnu(12)-sum(Jla)-Jla(13); %
 for i=14:15 % from dimer to (n-1)-mer %
  dA_dt(i)=-Jla(i)+Jla(i-1); % Derivatives of oligomer concentrations
 end
 dA_dt(16)= Jla(15)-2*Jfb1-Jfb2;
 dA_dt(17)=Jfb1-Jfb3(17)+Jfb4;
 
-for i=18:40% from dimer to (n-1)-mer
+for i=18:28% from dimer to (n-1)-mer
  dA_dt(i)=-Jfb3(i)+Jfb3(i-1); % Derivatives of oligomer concentrations
 end
-dA_dt(41)=Jfb3(40)-Jfb4;
+dA_dt(29)=Jfb3(28)-Jfb4;
 dA_dt(n)=-sum(Jnu)-sum(Jfb3);
 end
