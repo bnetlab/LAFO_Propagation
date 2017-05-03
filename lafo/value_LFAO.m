@@ -4,14 +4,14 @@ function value_LFAO
 
 n=18; %gateway 10
 
-x=38e-3;
+x=36e-3;
 % x=70e-3;  %10um
 x1 =10e-3;
 y=5e6;
 y1=5e-2; 
-z=5e5;
+z=5e4;
 z1=5e-3;
-p=5e5;
+p=4e5;
 p1=5e-3; 
 q=40e-3;
 q1=0;
@@ -19,7 +19,7 @@ s=0;
 s1=0;
 
 A_1=0.5;
-A_12=0.1;
+A_12=0.01;
 
 theta=[x,x1,y,y1,z,z1,p,p1,q,q1,s,s1]; 
 Y0=zeros(1,n); 
@@ -39,7 +39,7 @@ for i=2:13
 signalON=signalON + Y_val(:,i)*(i-1);
 end
 
-signalON=signalON + Y_val(:,14)*24+ + Y_val(:,15)*36 + Y_val(:,16)*48+Y_val(:,n-1)*3500000;
+signalON=signalON + Y_val(:,14)*24+ + Y_val(:,15)*36 + Y_val(:,16)*48+Y_val(:,n-1)*6000000;
 
 signalON(end)
  
