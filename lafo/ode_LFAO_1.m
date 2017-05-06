@@ -20,8 +20,7 @@ kfb2=theta(7);
 kfb2_=theta(8);
 kfag=theta(9);
 kfag_=theta(10);
-kfb3=theta(11);
-kfb3_=theta(12);
+
 
 
 % Definitions of reaction fluxes Jfb
@@ -34,9 +33,7 @@ end
 
 Jfag=kfag * A(13) - kfag_ * A(1).^2;
 Jfb1=kfb1 * A(n-2)*A(n)- kfb1_ * A(n-1); %
-Jfb2= kfb2 *A(n-1) *A(n)^0.4-kfb2_ * A(n-1); %
-
-Jfb3=kfb3 * A(n-2)*A(12)- kfb3_ * A(n-1); %
+Jfb2= kfb2 *A(n-1) *A(n)-kfb2_ * A(n-1); %
 
 
 % There are n equations representing the conc. change of n species
@@ -45,11 +42,11 @@ dA_dt(1)=-Jnu(1)+2 * Jfag; % Derivative of monomer conc.
 for i=2:12 % from dimer to (n-1)-mer
  dA_dt(i)=-Jnu(i)+Jnu(i-1); % Derivatives of oligomer concentrations
 end
-dA_dt(13)=Jnu(12)-sum(Jla)-Jla(13)-Jfag-Jfb3; %
+dA_dt(13)=Jnu(12)-sum(Jla)-Jla(13)-Jfag; %
 for i=14:n-3 % from dimer to (n-1)-mer %
  dA_dt(i)=-Jla(i)+Jla(i-1); % Derivatives of oligomer concentrations
 end
-dA_dt(n-2)= Jla(n-3)-Jfb1-Jfb3; %
-dA_dt(n-1)=Jfb1+Jfb3; %
+dA_dt(n-2)= Jla(n-3)-Jfb1; %
+dA_dt(n-1)=Jfb1; %
 dA_dt(n)=-sum(Jnu)-Jfb1-Jfb2;
 end
