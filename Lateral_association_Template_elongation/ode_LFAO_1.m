@@ -21,6 +21,8 @@ kfb3=theta(7);
 kfb3_=theta(8);
 kfag=theta(9);
 kfag_=theta(10);
+kfag1=theta(11);
+kfag1_=theta(12);
 
 
 % Definitions of reaction fluxes Jfb
@@ -31,6 +33,7 @@ for i=13:15 %
  Jla(i)=kla*A(13)*A(i)-kla_*A(i+1); % The flux of i-mer nucleation rxn
 end
 
+Jfag=kfag1 * A(13) - kfag1_ * A(1).^2;
 Jfb1=kfb1 * A(16)*A(16)- kfb1_ * A(17); %
 Jfb2= kfb1 *A(16) *A(17)-kfb1_ * A(17); %
 
@@ -42,11 +45,11 @@ Jfb4=kfag*A(n-1);
 
 % There are n equations representing the conc. change of n species
 
-dA_dt(1)=-Jnu(1)+Jfb4; % Derivative of monomer conc.
+dA_dt(1)=-Jnu(1)+2*Jfag+Jfb4; % Derivative of monomer conc.
 for i=2:12 % from dimer to (n-1)-mer
  dA_dt(i)=-Jnu(i)+Jnu(i-1); % Derivatives of oligomer concentrations
 end
-dA_dt(13)=Jnu(12)-sum(Jla)-Jla(13); %
+dA_dt(13)=Jnu(12)-sum(Jla)-Jla(13)-Jfag; %
 for i=14:15 % from dimer to (n-1)-mer %
  dA_dt(i)=-Jla(i)+Jla(i-1); % Derivatives of oligomer concentrations
 end
