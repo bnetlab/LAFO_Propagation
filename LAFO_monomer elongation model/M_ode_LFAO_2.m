@@ -16,7 +16,8 @@ kla=theta(3); % First forward fibrillation rate constant
 kla_=theta(4);
 kfb1=theta(5);
 kfb1_=theta(6);
-
+kfag=theta(7);
+kfag_=theta(8);
 
 
 % Definitions of reaction fluxes Jfb
@@ -27,16 +28,18 @@ for i=13:n-3 %
  Jla(i)=kla*A(i)*A(n)-kla_*A(i+1); % The flux of i-mer nucleation rxn
 end
 
+Jfag=kfag * A(12) - kfag_ * A(1).^2;
+
 Jfb1=kfb1 * A(n-2)*A(n)- kfb1_ * A(n-1); 
-Jfb2=kfb1 * A(n-1)*A(n).^0.4- kfb1_ * A(n-1);
+Jfb2=kfb1 * A(n-1)*A(n)- kfb1_ * A(n-1);
 
 % There are n equations representing the conc. change of n species
 
-dA_dt(1)=-Jnu(1); % Derivative of monomer conc.
+dA_dt(1)=-Jnu(1)+2*Jfag; % Derivative of monomer conc.
 for i=2:12 % from dimer to (n-1)-mer
  dA_dt(i)=-Jnu(i)+Jnu(i-1); % Derivatives of oligomer concentrations
 end
-dA_dt(13)=Jnu(12)-Jla(13); %
+dA_dt(13)=Jnu(12)-Jla(13)-Jfag; %
 for i=14:n-3 % from dimer to (n-1)-mer %
  dA_dt(i)=-Jla(i)+Jla(i-1); % Derivatives of oligomer concentrations
 end
