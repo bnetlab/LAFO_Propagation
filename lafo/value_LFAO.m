@@ -4,16 +4,17 @@ function value_LFAO
 
 n=18; % gateway 10
 
-x=38e-3;
-x1 =10e-3;
-y=5e6;
+x=33e-3;
+x1 =2e-3;
+y=4e6;
 y1=5e-2; 
 z=5e5;
 z1=5e-3;
-p=5e5;
+p=3e6;
 p1=5e-3; 
-q=40e-3;
+q=0;
 q1=0;
+
 
 A_1=0.5;
 B_12=[0.1 0.01 0.001];
@@ -40,7 +41,7 @@ for i=14:n-2
  signalON=signalON + 12*(i-12);
 end
 
-signalON=signalON +Y_val(:,n-1)*3500000;
+signalON=signalON +Y_val(:,n-1)*11000000;
 
 signalON(end)
  
