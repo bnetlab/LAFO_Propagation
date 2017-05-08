@@ -5,7 +5,7 @@ function value_LFAO
 n=30; %24 mer frag
 
 x=29e-3; %nu
-x1 =1e-4;
+x1 =1e-3;
 y=5e7; %ilafo
 y1=5e-3; 
 z=5e7; %plafo
@@ -54,34 +54,30 @@ signalON = (signalON - min(signalON))/(max(signalON) - min(signalON));
 
 plot(t_range, signalON)
 hold on;
+
 if (j==1)
-    load 'LFAO_DATA.txt';
+     load 'LFAO_DATA.txt';
     Data=LFAO_DATA;
     plot(Data(:,1),Data(:,2),'-*')
-%     B= [t_range',signalON];
-%     fileID = fopen('Model3_010_Simulated.txt','w');
-%     fprintf(fileID,'%6.2f %12.8f\n',B');
-%     fclose(fileID);
+    s=(Data(7,2)-Data(5,2))./(signalON(193)-signalON(145))
 elseif (j==2)
-   load 'LFAO_DATA_01.txt';
-   Data=LFAO_DATA_01;
-   plot(Data(:,1),Data(:,2),'-*')
-%     C= [t_range',signalON];
-%     fileID = fopen('Model3_001_Simulated.txt','w');
-%     fprintf(fileID,'%6.2f %12.8f\n',C');
-%     fclose(fileID);
-else
-    load 'LFAO_DATA_00001.txt';
-    Data=LFAO_DATA_00001;
+    load 'LFAO_DATA_01.txt';
+    Data=LFAO_DATA_01;
     plot(Data(:,1),Data(:,2),'-*')
-end
+    s=(Data(8,2)-Data(5,2))./(signalON(217)-signalON(145))
+ else
+    load 'LFAO_DATA_00001.txt';
+   Data=LFAO_DATA_00001;
+     plot(Data(:,1),Data(:,2),'-*')
+    s=(Data(11,2)-Data(8,2))./(signalON(241)-signalON(169))
+ end
 
 X=Data(:,2);
 Y=signalON(Data(:,1)+1);
 mdl = fitlm(Y,X)
 
-signalON (192)/signalON (144)
-signalON (300)/signalON (225)
+signalON (end)/signalON (250)
+
 end
 
 % B= [t_range',signalON];
