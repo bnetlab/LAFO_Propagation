@@ -53,22 +53,24 @@ if (j==1)
      load 'LFAO_DATA.txt';
     Data=LFAO_DATA;
     plot(Data(:,1),Data(:,2),'-*')
+    s=(Data(7,2)-Data(5,2))./(signalON(193)-signalON(145))
 elseif (j==2)
     load 'LFAO_DATA_01.txt';
     Data=LFAO_DATA_01;
     plot(Data(:,1),Data(:,2),'-*')
+    s=(Data(8,2)-Data(5,2))./(signalON(217)-signalON(145))
  else
     load 'LFAO_DATA_00001.txt';
    Data=LFAO_DATA_00001;
      plot(Data(:,1),Data(:,2),'-*')
+    s=(Data(11,2)-Data(8,2))./(signalON(241)-signalON(169))
  end
 
 X=Data(:,2);
 Y=signalON(Data(:,1)+1);
 mdl = fitlm(Y,X)
 
-signalON (192)/signalON (144)
-signalON (300)/signalON (225)
+signalON (end)/signalON (250)
  end
 % ratio50=sum(Y_val(50,1:13))./Y_val(50,17)
 % 
