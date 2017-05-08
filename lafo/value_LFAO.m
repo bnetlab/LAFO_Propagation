@@ -2,9 +2,9 @@
 % Added Fragmentation
 function value_LFAO
 
-n=19; % gateway 10
+n=20; % gateway 10
 
-x=35e-3;
+x=37e-3;
 x1 =2e-3;
 y=4e6;
 y1=5e-2; 
@@ -40,7 +40,7 @@ for i=14:n-2
  signalON=signalON + 12*(i-12);
 end
 
-signalON=signalON +Y_val(:,n-1)*12000000;
+signalON=signalON +Y_val(:,n-1)*10000000;
 
 signalON(end)
  
