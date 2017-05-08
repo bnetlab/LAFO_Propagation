@@ -2,9 +2,9 @@
 % Added Fragmentation
 function value_LFAO
 
-n=20; % gateway 10
+n=21; % gateway 10
 
-x=37e-3;
+x=39e-3;
 x1 =2e-3;
 y=4e6;
 y1=5e-2; 
