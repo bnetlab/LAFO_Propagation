@@ -2,10 +2,10 @@
 % Added Fragmentation
 function value_LFAO
 
-n=34; %24 mer frag
+n=36; %24 mer frag
 
-x=66e-3; %nu
-x1 =20e-3;
+x=72e-3; %nu
+x1 =25e-3;
 y=2e5; %ilafo
 y1=1e-1; 
 z=5e4; %plafo
@@ -44,7 +44,7 @@ signalON=signalON + 12*(i-12);
 end
 
 for i=17:n-1
-signalON=signalON +Y_val(:,i)*200000;
+signalON=signalON +Y_val(:,i)*160000;
 end
 
 
