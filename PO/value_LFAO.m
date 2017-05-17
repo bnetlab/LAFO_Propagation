@@ -2,9 +2,9 @@
 % Added Fragmentation
 function value_LFAO
 
-n=29; %24 mer frag
+n=28; %24 mer frag
 
-x=50e-3; %nu
+x=45e-3; %nu
 x1 =7e-3;
 y=2e5; %ilafo
 y1=1e-1; 
