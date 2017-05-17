@@ -17,14 +17,12 @@ kla=theta(3); % First forward fibrillation rate constant
 kla_=theta(4);
 kfb1=theta(5);
 kfb1_=theta(6);
-kfb3=theta(7);
-kfb3_=theta(8);
-kfag=theta(9);
-kfag_=theta(10);
-kfb2=theta(11);
-kfb2_=theta(12);
-kfb4=theta(13);
-kfb4_=theta(14);
+kfb4=theta(7);
+kfb4_=theta(8);
+kfb3=theta(9);
+kfb3_=theta(10);
+kfag=theta(11);
+kfag_=theta(12);
 
 % Definitions of reaction fluxes Jfb
 for i=1:12
@@ -37,9 +35,9 @@ end
 % Jfag=kfag1 * A(13) - kfag1_ * A(1).^2;
 Jfag=0;
 Jfb1=kfb1 * A(n-14)*A(n-14)- kfb1_ * A(n-13); %
-Jfb2= kfb2 *A(n-14) *A(n-13)-kfb2_ * A(n-13);
+Jfb2= kfb1 *A(n-14) *A(n-13)-kfb1_ * A(n-13);
 Jfb4a= kfb4 *A(13) *A(n-14)-kfb4_ * A(n-13);%
-Jfb4b= kfb4/10 *A(13) *A(n-13)-kfb4_ * A(n-13);
+Jfb4b= kfb4/2 *A(13) *A(n-13)-kfb4_ * A(n-13);
 
 for i=n-13:n-2
  Jfb3(i)=kfb3*A(i)*A(n)-kfb3_*A(i+1); % The flux of i-mer nucleation rxn

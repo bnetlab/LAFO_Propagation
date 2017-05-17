@@ -4,20 +4,19 @@ function value_LFAO
 
 n=30; %24 mer frag
 
-x=57e-3; %nu
-x1 =8e-3;
+x=56e-3; %nu
+x1 =10e-3;
 y=2e5; %ilafo
-y1=5e-3; 
-z=5e5; %plafo
-z1=5e-2;
-p=5e5; %fib
-p1=5e-1; 
-q=5e2; % fag
-q1=0;
-r=1e5;
+y1=1e-1; 
+z=5e4; %plafo
+z1=2e-2;
+r=5e5;
 r1=5e-2;
-s=1e5;
-s1=5e-2;
+p=5e5; %fib
+p1=1e-1; 
+q=6e2; % fag
+q1=0;
+
 
 A_1=0.5;
 B_12=[0.1 0.01 0.001];
@@ -25,7 +24,7 @@ B_12=[0.1 0.01 0.001];
 for j=1:3
     A_12=B_12(j);
 
-theta=[x,x1,y,y1,z,z1,p,p1,q,q1,r,r1,s,s1]; 
+theta=[x,x1,y,y1,z,z1,r,r1,p,p1,q,q1]; 
 Y0=zeros(1,n); 
 
 Y0(n)=A_1;
@@ -45,7 +44,7 @@ signalON=signalON + 12*(i-12);
 end
 
 for i=17:n-1
-signalON=signalON +Y_val(:,i)*440000;
+signalON=signalON +Y_val(:,i)*380000;
 end
 
 
