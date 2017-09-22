@@ -51,7 +51,6 @@ for i=n1:n-1
   Jfbon(i)=kfbon*A(n)*A(i)-kfbon_*A(n); % The flux of i-mer elongation rxn
 end
 
-
 % There are n equations representing the conc. change of n species
 
 dA_dt(1)=-Jnu(1)+Jfb4; % Derivative of monomer conc.
@@ -75,5 +74,4 @@ for i=n1+1:n-1 % from dimer to (n-1)-mer
 dA_dt(i)=-Jnuon(i)+Jnuon(i-1)-Jfbon(i); % Derivatives of oligomer concentrations
 end
 dA_dt(n)=Jnuon(n-1);
-
 end
